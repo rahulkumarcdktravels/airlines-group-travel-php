@@ -1,0 +1,1 @@
+<?php require_once __DIR__.'/../includes/functions.php'; require_admin(); if($_SERVER['REQUEST_METHOD']!=='POST'){header('Location: index.php');exit;}verify_csrf();$slug=$_POST['slug']??'';$posts=array_values(array_filter(get_posts(),function($p)use($slug){return ($p['slug']??'')!==$slug;}));save_posts($posts);header('Location: index.php?deleted=1');exit;
